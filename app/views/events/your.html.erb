@@ -1,0 +1,13 @@
+<h1>Your Events!</h1>
+
+<ul>
+  <h1>Created:</h1>
+  <% current_user.events.each do |event| %>
+    <li>
+      <%= event.title %>
+      <%= event.location %>
+      <%= event.date %>
+    </li>
+        <%= link_to 'Show', event_path(event.id) %>
+  <% end %>
+</ul>

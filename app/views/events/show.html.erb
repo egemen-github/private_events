@@ -1,0 +1,15 @@
+<ul>
+    <li>
+      <h3><%= @event.title %></h3>
+      <%= @event.creator.email %>
+      <%= @event.description %>
+      <%= @event.location %>
+      <%= @event.date %>
+      <%= @event.time %>
+    </li>
+  <% if @event.creator == current_user %>
+    <%= link_to 'Edit', edit_event_path(@event.id) %>
+    <%= button_to 'Delete', @event, method: :delete %>
+  <% end %>
+    <%= link_to 'All Events', events_path, data: { turbo_action: "replace" } %>
+</ul>
