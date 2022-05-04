@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   # after_action :after_sign_in, :only => :create
   # def after_sign_in
-  #    flash[:message_of_the_day] = "Welcome to our site!" 
+  #    flash[:message_of_the_day] = "Welcome to our site!"
   # end
   # GET /resource/sign_in
   # def new
@@ -20,7 +20,7 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     super
-    flash[:see_you] = "See you!"
+    flash[:see_you] = 'See you!'
   end
 
   # protected
