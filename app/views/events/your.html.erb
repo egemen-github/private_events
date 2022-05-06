@@ -11,3 +11,20 @@
         <%= link_to 'Show', event_path(event.id) %>
   <% end %>
 </ul>
+
+<ul>
+  <h1>Involved:</h1>
+  <% current_user.involvements.each do |involvement| %>
+    <% @event = Event.find(involvement.event_id) %>
+    <li>
+      <h3><%= @event.title %></h3>
+      <%= @event.creator.email %>
+      <%= @event.description %>
+      <%= @event.location %>
+      <%= @event.date %>
+      <%= @event.time %>
+    </li>
+      <%= link_to 'Show', event_path(@event.id) %>
+      <%= button_to 'Not Join', involvement_path(involvement), :method => 'delete' %>
+  <% end %>
+</ul>

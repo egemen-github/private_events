@@ -10,6 +10,18 @@
   <% if @event.creator == current_user %>
     <%= link_to 'Edit', edit_event_path(@event.id) %>
     <%= button_to 'Delete', @event, method: :delete %>
+  <% elsif @event.attendees.include?(current_user) %>
+    <% @involvement = current_user.involvements.where(event_id: @event.id) %>
+    <%= button_to 'Not Join', involvement_path(@involvement.ids), :method => 'delete' %>
+  <% else %>
+    <%= button_to 'Join Event', involvements_path(@event), params: { involvement: { event_id: @event.id, attendee_id: current_user.id } } %>
   <% end %>
     <%= link_to 'All Events', events_path, data: { turbo_action: "replace" } %>
 </ul>
+
+<h3>Attendees</h3>
+<% @event.attendees.each do |attendee| %>
+  <li>
+    <%= attendee.email %>
+  </li>
+<% end %>
