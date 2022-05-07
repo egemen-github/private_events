@@ -4,8 +4,8 @@
       <%= @event.creator.email %>
       <%= @event.description %>
       <%= @event.location %>
-      <%= @event.date %>
-      <%= @event.time %>
+      <%= @event.date.strftime("%d/%m/%Y") %>
+      <%= @event.time.strftime("%k:%M") %>
     </li>
   <% if @event.creator == current_user %>
     <%= link_to 'Edit', edit_event_path(@event.id) %>
@@ -19,9 +19,17 @@
     <%= link_to 'All Events', events_path, data: { turbo_action: "replace" } %>
 </ul>
 
-<h3>Attendees</h3>
-<% @event.attendees.each do |attendee| %>
-  <li>
-    <%= attendee.email %>
-  </li>
-<% end %>
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Attendees
+  </div>
+  <ul class="list-group list-group-flush">
+      <% @event.attendees.each do |attendee| %>
+        <li class="list-group-item" >
+          <%= attendee.email %>
+        </li>
+      <% end %>
+  </ul>
+</div>
+
+<h3></h3>
