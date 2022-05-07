@@ -1,55 +1,57 @@
-<h1>Your Events!</h1>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <ul>
-        <h1>Created:</h1>
-        <% current_user.events.each do |event| %>
-          <li>
-            <%= event.title %>
-            <%= event.location %>
-            <%= event.date.strftime("%d/%m/%Y") %>
-            <%= event.time.strftime("%k:%M") %>
-          </li>
-              <%= link_to 'Show', event_path(event.id) %>
-        <% end %>
-      </ul>
+<div class="container"></br>
+  <div class="row container-md">
+    <div class="col container-md">
+      <h5>Events You Created:</h5></br>
+      <% current_user.events.each do |event| %>
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= event.location %></h6>
+            <p class="card-subtitle mb-2 text-muted"><%= event.time.strftime("%k:%M") %> | <%= event.date.strftime("%d/%m/%Y") %></p>
+            <%# <p class="card-text"></p> %>
+            <a href="#" class="card-link"><%= link_to 'Show', event_path(event.id) %></a>
+          </div>
+        </div></br>
+      <% end %>
     </div>
-    <div class="col">
-      <ul>
-        <h1>Joined Upcomings:</h1>
+    <div class="col container-md">
+        <h5>Joined Upcoming Events:</h5></br>
         <% current_user.involvements.each do |involvement| %>
           <% @event = Event.find(involvement.event_id) %>
-          <% if @event.date > Date.today %>
-            <li>
-              <%= @event.title %>
-              <%= @event.location %>
-              <%= @event.date.strftime("%d/%m/%Y") %>
-              <%= @event.time.strftime("%k:%M") %>
-            </li>
-            <%= link_to 'Show', event_path(@event.id) %>
-            <%= button_to 'Not Join', involvement_path(involvement), :method => 'delete' %>
+          <% if @event.date >= Date.today %>
+          <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= @event.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= @event.location %></h6>
+              <p class="card-subtitle mb-2 text-muted"><%= @event.time.strftime("%k:%M") %> | <%= @event.date.strftime("%d/%m/%Y") %></p>
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <%= link_to 'Show', event_path(@event.id), class: 'btn btn-link p-0' %>
+                <%= button_to 'Not Join', involvement_path(involvement), :method => 'delete', class: 'btn btn-link p-0 mx-3' %>
+              </div>
+            </div>
+          </div></br>
             <% end %>
         <% end %>
-      </ul>
     </div>
-    <div class="col">
-      <ul>
-        <h1>Joined Pasts:</h1>
-        <% current_user.involvements.each do |involvement| %>
-          <% @event = Event.find(involvement.event_id) %>
-          <% if Date.today > @event.date %>
-            <li>
-              <%= @event.title %>
-              <%= @event.location %>
-              <%= @event.date.strftime("%d/%m/%Y") %>
-              <%= @event.time.strftime("%k:%M") %>
-            </li>
-            <%= link_to 'Show', event_path(@event.id) %>
-            <%= button_to 'Not Join', involvement_path(involvement), :method => 'delete' %>
-            <% end %>
-        <% end %>
-      </ul>
+    <div class="col container-md">
+      <h5>Passed Joined Events:</h5></br>
+      <% current_user.involvements.each do |involvement| %>
+        <% @event = Event.find(involvement.event_id) %>
+        <% if Date.today > @event.date %>
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= @event.title %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= @event.location %></h6>
+            <p class="card-subtitle mb-2 text-muted"><%= @event.time.strftime("%k:%M") %> | <%= @event.date.strftime("%d/%m/%Y") %></p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <%= link_to 'Show', event_path(@event.id), class: 'btn btn-link p-0' %>
+              <%= button_to 'Not Join', involvement_path(involvement), :method => 'delete', class: 'btn btn-link p-0 mx-3' %>
+            </div>
+          </div>
+        </div></br>
+          <% end %>
+      <% end %>
     </div>
   </div>
 </div>
+

@@ -1,25 +1,26 @@
-<ul>
-    <li>
-      <h3><%= @event.title %></h3>
-      <%= @event.creator.email %>
-      <%= @event.description %>
-      <%= @event.location %>
-      <%= @event.date.strftime("%d/%m/%Y") %>
-      <%= @event.time.strftime("%k:%M") %>
-    </li>
-  <% if @event.creator == current_user %>
-    <%= link_to 'Edit', edit_event_path(@event.id) %>
-    <%= button_to 'Delete', @event, method: :delete %>
-  <% elsif @event.attendees.include?(current_user) %>
-    <% @involvement = current_user.involvements.where(event_id: @event.id) %>
-    <%= button_to 'Not Join', involvement_path(@involvement.ids), :method => 'delete' %>
-  <% else %>
-    <%= button_to 'Join Event', involvements_path(@event), params: { involvement: { event_id: @event.id, attendee_id: current_user.id } } %>
-  <% end %>
-    <%= link_to 'All Events', events_path, data: { turbo_action: "replace" } %>
-</ul>
-
-<div class="card" style="width: 18rem;">
+</br>
+<div class="card">
+  <h5 class="card-header"><%= @event.title %></h5>
+  <div class="card-body">
+    <h6 class="card-subtitle mb-2 text-muted"><%= @event.creator.email %></h6>
+    <h6 class="card-subtitle mb-2 text-muted"><%= @event.location %>, <%= @event.time.strftime("%k:%M") %> | <%= @event.date.strftime("%d/%m/%Y") %></h6>
+    <p class="card-text"><%= @event.description %></p>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <% if @event.creator == current_user %>
+        <%= link_to 'Edit', edit_event_path(@event.id), class: 'btn btn-link p-0' %>
+        <%= button_to 'Delete', @event, method: :delete, class: 'btn btn-link p-0 mx-3'%>
+      <% elsif @event.attendees.include?(current_user) %>
+        <% @involvement = current_user.involvements.where(event_id: @event.id) %>
+        <%= button_to 'Not Join', involvement_path(@involvement.ids), :method => 'delete', class: 'btn btn-link p-0' %>
+      <% else %>
+        <%= button_to 'Join Event', involvements_path(@event), params: { involvement: { event_id: @event.id, attendee_id: current_user.id } }, class: 'btn btn-link p-0' %>
+      <% end %>
+        <%= link_to 'All Events', events_path, data: { turbo_action: "replace" }, class: 'btn btn-link p-0 mx-3' %>
+    </div>
+  </div>
+</div>
+</br>
+<div class="card">
   <div class="card-header">
     Attendees
   </div>
@@ -31,5 +32,3 @@
       <% end %>
   </ul>
 </div>
-
-<h3></h3>
