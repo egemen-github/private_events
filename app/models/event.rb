@@ -7,4 +7,6 @@ class Event < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   has_many :involvements
   has_many :attendees, through: :involvements, source: :attendee
+  scope :past, -> { where("date < ?", Date.today) }
+  scope :coming, -> { where("date >= ?", Date.today) }
 end
