@@ -1,6 +1,6 @@
-<div class="container"></br>
-  <div class="row container-md">
-    <div class="col container-md">
+<div class="container d-flex justify-content-center">
+  <div class="row container-md d-flex justify-content-center">
+    <div class="col container-md"></br>
       <h5>Events You Created:</h5></br>
       <% current_user.events.each do |event| %>
         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
@@ -14,7 +14,7 @@
         </div></br>
       <% end %>
     </div>
-    <div class="col container-md">
+    <div class="col container-md "></br>
         <h5>Joined Upcoming Events:</h5></br>
         <% current_user.involvements.each do |involvement| %>
           <% @event = Event.find(involvement.event_id) %>
@@ -33,7 +33,7 @@
             <% end %>
         <% end %>
     </div>
-    <div class="col container-md">
+    <div class="col container-md"></br>
       <h5>Passed Joined Events:</h5></br>
       <% current_user.involvements.each do |involvement| %>
         <% @event = Event.find(involvement.event_id) %>
