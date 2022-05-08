@@ -1,9 +1,9 @@
 <div class="container"></br>
-<h3>All Events</h3></br>
+<h3 class="d-flex justify-content-center">All Events</h3></br>
+  <h5>Upcoming Events:</h5></br>
   <div class="row">
-  <h5>Upcoming Events:</h5>
     <% @coming.each do |event| %>
-    <div class="col-md-6 col-xxl-3"></br>
+    <div class="col-12 col-lg-4 d-flex justify-content-center"></br>
         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
@@ -15,10 +15,10 @@
       </div>
     <% end %>
   </div></br></br>
+  <h5>Passed Events:</h5></br>
   <div class="row">
-  <h5>Passed Events:</h5>
     <% @past.each do |event| %>
-    <div class="col-md-6 col-xxl-3"></br>
+    <div class="col-12 col-lg-4 d-flex justify-content-center"></br>
         <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
