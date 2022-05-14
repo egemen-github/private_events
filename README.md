@@ -1,24 +1,12 @@
-# README
+# private_events
+This project assignment is from The Odin Project's [Rails](https://www.theodinproject.com/lessons/ruby-on-rails-private-events) curriculum.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## What is this?
+This project is similar to a private Eventbrite which allows users to create events and then manage user signups. Users can host events at a specific time and place and attend created events. 
 
-Things you may want to cover:
+## Practiced:
+* ActiveRecord's associations, many-to-many relationships.
+* Foreign keys and custom class names.
+* Devise to handle authentication.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## What it looks like:
